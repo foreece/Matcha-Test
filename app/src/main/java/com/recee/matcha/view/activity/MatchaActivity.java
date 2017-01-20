@@ -1,9 +1,10 @@
-package com.recee.matcha;
+package com.recee.matcha.view.activity;
 
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 
-public class MatchaActivity extends AppCompatActivity {
+import com.recee.matcha.R;
+
+public class MatchaActivity extends BaseActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
