@@ -12,4 +12,10 @@
 程序为了快速开发，把重点放到单元测试上面所以引用了一些github上的项目，包括fresco、butterknife、retrofit2 和 rxjava。
 这都是一些比较优秀的开源项目，能够很好的提高我们的开发速度。
 
+##首先我们需要搭建基本的测试环境：
+Android进行单元测试有以下几种方案：
+1. UI代码和业务逻辑分离，直接使用JUnit测试与Android无关的逻辑层，可以参考MVP架构设计代码（LoginActivity）
+2. 使用InstrumentedTest，但是需要安装apk到手机或者模拟器上，耗时
+3. 使用Robolectric，它会mock Android中的相关类，这样即使测试代码涉及到Android原生类也不会报错
 
+接下来我们会分别极少这几种实现方式。

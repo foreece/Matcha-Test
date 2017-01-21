@@ -1,10 +1,14 @@
 package com.recee.matcha.view.activity;
 
 import android.os.Bundle;
+import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Toast;
 
 import com.recee.matcha.R;
+import com.recee.matcha.presenter.LoginPresenter;
+import com.recee.matcha.view.LoginView;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -16,7 +20,7 @@ import butterknife.ButterKnife;
  * @Description
  */
 
-public class LoginActivity extends BaseActivity {
+public class LoginActivity extends BaseActivity implements LoginView{
 
     @BindView(R.id.email)
     protected EditText mEditTextEmail;
@@ -27,10 +31,30 @@ public class LoginActivity extends BaseActivity {
     @BindView(R.id.clear)
     protected Button mButtonCancel;
 
+    private LoginPresenter mLoginPresenter;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         ButterKnife.bind(this);
+        mLoginPresenter = new LoginPresenter(this);
 
+        mButtonLogin.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                mLoginPresenter.login(mEditTextEmail.getText().toString(), mEditTExtPwd.getText().toString());
+            }
+        });
+    }
+
+    @Override
+    public void onLoginSuccess() {
+        Toast.makeText(this, "Login successful", Toast.LENGTH_SHORT).show();
+        finish();
+    }
+
+    @Override
+    public void onLoginFailed() {
+        Toast.makeText(this, "Login failed", Toast.LENGTH_SHORT).show();
     }
 }

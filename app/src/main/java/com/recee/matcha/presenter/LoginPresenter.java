@@ -1,5 +1,7 @@
 package com.recee.matcha.presenter;
 
+import com.recee.matcha.view.LoginView;
+
 /**
  * @author Reece
  * @version V1.0
@@ -8,6 +10,12 @@ package com.recee.matcha.presenter;
  */
 
 public class LoginPresenter implements Presenter {
+
+    private LoginView mLoginView;
+
+    public LoginPresenter(LoginView loginView) {
+        this.mLoginView = loginView;
+    }
 
     @Override
     public void onResume() {
@@ -22,5 +30,13 @@ public class LoginPresenter implements Presenter {
     @Override
     public void onDestroy() {
 
+    }
+
+    public void login(String email, String pwd) {
+        if ("reece".equals(email) && "111".equals(pwd)) {
+            mLoginView.onLoginSuccess();
+        } else {
+            mLoginView.onLoginFailed();
+        }
     }
 }

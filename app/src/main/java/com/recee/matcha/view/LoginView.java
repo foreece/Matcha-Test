@@ -7,6 +7,7 @@ package com.recee.matcha.view;
  * @Description
  */
 
-public class LoginView {
-
+public interface LoginView {
+    void onLoginSuccess();
+    void onLoginFailed();
 }
