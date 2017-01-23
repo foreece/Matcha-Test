@@ -1,5 +1,6 @@
 package com.recee.matcha.view.activity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -36,6 +37,7 @@ public class LoginActivity extends BaseActivity implements LoginView{
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_login);
         ButterKnife.bind(this);
         mLoginPresenter = new LoginPresenter(this);
 
@@ -50,6 +52,8 @@ public class LoginActivity extends BaseActivity implements LoginView{
     @Override
     public void onLoginSuccess() {
         Toast.makeText(this, "Login successful", Toast.LENGTH_SHORT).show();
+        Intent intent = new Intent(this, MatchaActivity.class);
+        startActivity(intent);
         finish();
     }
 
