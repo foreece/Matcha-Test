@@ -47,6 +47,14 @@ public class LoginActivity extends BaseActivity implements LoginView{
                 mLoginPresenter.login(mEditTextEmail.getText().toString(), mEditTExtPwd.getText().toString());
             }
         });
+
+        mButtonCancel.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                mEditTextEmail.setText("");
+                mEditTExtPwd.setText("");
+            }
+        });
     }
 
     @Override
