@@ -62,8 +62,8 @@ public class LoginTest {
      */
     @Test
     public void testLogin() {
-        mEditEmail.setText("reece");
-        mEditPwd.setText("111");
+        mEditEmail.setText("foreece@gmail.com");
+        mEditPwd.setText("111111");
         mLogin.performClick();
         ShadowActivity shadowActivity = Shadows.shadowOf(mLoginActivity);
         Intent intent = shadowActivity.getNextStartedActivity();
@@ -91,11 +91,8 @@ public class LoginTest {
     public void testLoginPresenter() {
         LoginView view = mock(LoginView.class);
         LoginPresenter loginPresenter = new LoginPresenter(view);
-        loginPresenter.login("reece", "111");
+        loginPresenter.login("foreece@gmail.com", "111111");
         verify(view).onLoginSuccess();
-
-        loginPresenter.login("reece", "11");
-        verify(view).onLoginFailed();
     }
 
     /**
@@ -109,6 +106,20 @@ public class LoginTest {
                 .resume()
                 .pause()
                 .resume();
+    }
+
+    @Test
+    public void testLoginInput() {
+        LoginView view = mock(LoginView.class);
+        LoginPresenter loginPresenter = new LoginPresenter(view);
+        loginPresenter.login("", "");
+        verify(view).onInputError(LoginPresenter.TYPE_WRONG_INPUT_ALL);
+
+        loginPresenter.login("reece", "111111");
+        verify(view).onInputError(LoginPresenter.TYPE_WRONG_EMAIL_FORMAT);
+
+        loginPresenter.login("foreece@gmail.com", "111");
+        verify(view).onInputError(LoginPresenter.TYPE_WRONG_PASSWORD_LENGTH);
     }
 
 }

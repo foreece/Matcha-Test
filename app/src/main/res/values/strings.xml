@@ -6,4 +6,8 @@
     <string name="password">Password</string>
     <string name="cancel">Cancel</string>
     <string name="confirm">login</string>
+
+    <string name="tips_wrong_input">Email or password is null.</string>
+    <string name="tips_wrong_email">Email is invalid.</string>
+    <string name="tips_wrong_password">Password length is less than 6.</string>
 </resources>

@@ -2,6 +2,7 @@ package com.recee.matcha.view.activity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.text.TextUtils;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -68,5 +69,26 @@ public class LoginActivity extends BaseActivity implements LoginView{
     @Override
     public void onLoginFailed() {
         Toast.makeText(this, "Login failed", Toast.LENGTH_SHORT).show();
+    }
+
+    @Override
+    public void onInputError(int errorType) {
+        String message = "";
+        switch (errorType) {
+            case LoginPresenter.TYPE_WRONG_EMAIL_FORMAT:
+                message = getResources().getString(R.string.tips_wrong_email);
+                break;
+            case LoginPresenter.TYPE_WRONG_INPUT_ALL:
+                message = getResources().getString(R.string.tips_wrong_input);
+                break;
+            case LoginPresenter.TYPE_WRONG_PASSWORD_LENGTH:
+                message = getResources().getString(R.string.tips_wrong_password);
+                break;
+            default:
+                break;
+        }
+        if (!TextUtils.isEmpty(message)) {
+            Toast.makeText(this, message, Toast.LENGTH_SHORT).show();
+        }
     }
 }

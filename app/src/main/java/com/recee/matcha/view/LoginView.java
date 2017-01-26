@@ -10,4 +10,5 @@ package com.recee.matcha.view;
 public interface LoginView {
     void onLoginSuccess();
     void onLoginFailed();
+    void onInputError(int errorType);
 }
